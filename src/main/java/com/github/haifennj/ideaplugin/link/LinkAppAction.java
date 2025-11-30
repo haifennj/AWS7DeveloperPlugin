@@ -51,9 +51,10 @@ public class LinkAppAction extends AnAction {
 				if (checkFileExist(e, file)) {
 					removeLink(e.getProject(), file);
 					hasRemoveOperation = true;
+				} else {
+					createLink(e.getProject(), file);
+					hasCreateOperation = true;
 				}
-				createLink(e.getProject(), file);
-				hasCreateOperation = true;
 			}
 			// 根据操作类型分别刷新和提示
 			if (hasCreateOperation || hasRemoveOperation) {
