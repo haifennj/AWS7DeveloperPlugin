@@ -1,0 +1,47 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <id>com-actionsoft-aws7-idea-plugin</id>
+    <name>AWS 7 Developer Plugin</name>
+    <vendor email="haifennj@gmail.com">haifennj</vendor>
+
+    <description><![CDATA[
+        <b>AWS 7 开发者插件</b><br/>
+        作者：<br/>
+        Haifennj<br/>
+    ]]></description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- displayType只有这四种类型, id 在一个插件内不能重复,isLogByDefault表示是否在 Event Log 中记录 -->
+        <notificationGroup displayType="BALLOON" id="com.github.haifennj.ideaplugin.notification.balloon"
+                           isLogByDefault="false"/>
+    </extensions>
+
+    <actions>
+<!--        <action id="AddToGradle" class="com.github.haifennj.ideaplugin.gradle.AddToGradleAction"-->
+<!--                text="Add to Gradle">-->
+<!--            <add-to-group group-id="ProjectViewPopupMenuModifyGroup" anchor="before" relative-to-action="$Delete"/>-->
+<!--        </action>-->
+        <action id="GenerateGradle" class="com.github.haifennj.ideaplugin.gradle.GenerateGradle" text="Write to 'local.gradle'">
+            <add-to-group group-id="ProjectViewPopupMenuModifyGroup" anchor="before" relative-to-action="$Delete"/>
+        </action>
+        <action id="LinkApp" class="com.github.haifennj.ideaplugin.link.LinkAppAction" text="Link App">
+            <add-to-group group-id="ProjectViewPopupMenuModifyGroup" anchor="before" relative-to-action="$Delete"/>
+        </action>
+        <action id="CopyToDesktop" class="com.github.haifennj.ideaplugin.file.FileCopyAction" text="Copy to Desktop"
+                description="Copy to Desktop">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="after" relative-to-action="CutCopyPasteGroup"/>
+        </action>
+<!--        <action-->
+<!--                id="com.example.RunGradleTaskAction"-->
+<!--                class="com.github.haifennj.ideaplugin.gradle.RunGradleTaskAction"-->
+<!--                text="Run Gradle Task"-->
+<!--                description="Select and execute a Gradle task">-->
+<!--            <add-to-group group-id="ProjectViewPopupMenuModifyGroup" anchor="before" relative-to-action="$Delete"/>-->
+<!--        </action>-->
+    </actions>
+
+</idea-plugin>

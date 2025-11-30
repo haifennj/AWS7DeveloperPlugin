@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id "org.jetbrains.intellij" version "1.13.3"
+    id 'java-gradle-plugin'
+}
+
+group 'com-actionsoft-aws7-idea-plugin'
+version '1.0.0'
+
+sourceCompatibility = 17
+targetCompatibility = 17
+
+// java {
+//     toolchain {
+//         languageVersion = JavaLanguageVersion.of(17)  // IntelliJ 2023+ 需要 Java 17+
+//     }
+// }
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    ideaVersion = '2025.2'
+    ijPlatform = System.properties['ijPlatform']
+    if (ijPlatform != null) {
+        ideaVersion = ijPlatform
+    }
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.gradle/gradle-tooling-api
+    implementation 'org.gradle:gradle-tooling-api:7.3-20210825160000+0000'
+    // The tooling API need an SLF4J implementation available at runtime, replace this with any other implementation
+    runtimeOnly 'org.slf4j:slf4j-simple:1.7.30'
+}
+
+// See https://github.com/JetBrains/gradle-intellij-plugin/
+intellij {
+    version = ideaVersion
+    // plugins = [ 'com.intellij.java' ]
+    plugins = ['gradle'] // 关键：添加 gradle 插件依赖
+    updateSinceUntilBuild = false
+}
+
+patchPluginXml {
+    sinceBuild = '231'
+}
+
+//publishPlugin {
+//    token = intellijPublishToken
+//}
